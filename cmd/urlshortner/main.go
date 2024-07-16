@@ -26,7 +26,8 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-	r.HandleFunc("/", internal.CreateShortURL(context, db)).Methods("POST")
+	r.HandleFunc("/", internal.HomePage).Methods("GET")
+	r.HandleFunc("/shorten", internal.CreateShortURL(context, db)).Methods("POST")
 	r.HandleFunc("/{shortURL}", internal.RedirectURL(db)).Methods("GET")
 
 	http.Handle("/", r)
