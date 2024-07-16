@@ -13,5 +13,6 @@ type URL struct {
 	ShortURL  string    `pg:"unique,notnull"`
 	LongURL   string    `pg:"notnull"`
 	CreatedAt time.Time `pg:"default:now()"`
+	Clicks    int64     `pg:"default:0"`
 	ExpiresAt time.Time
 }

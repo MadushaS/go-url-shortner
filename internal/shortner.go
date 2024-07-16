@@ -80,6 +80,9 @@ func RedirectURL(db *bun.DB) http.HandlerFunc {
 			return
 		}
 
+		url.Clicks++
+		_, err = db.NewUpdate().Model(url).Set("clicks = ?", url.Clicks).Where("short_url = ?", shortURL).Exec(context.Background())
+
 		http.Redirect(w, r, url.LongURL, http.StatusSeeOther)
 	}
 }
