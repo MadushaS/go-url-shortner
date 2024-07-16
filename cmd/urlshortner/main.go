@@ -29,6 +29,7 @@ func main() {
 	r.HandleFunc("/", internal.HomePage).Methods("GET")
 	r.HandleFunc("/shorten", internal.CreateShortURL(context, db)).Methods("POST")
 	r.HandleFunc("/{shortURL}", internal.RedirectURL(db)).Methods("GET")
+	r.HandleFunc("/info/{shortURL}", internal.GetInfo(db)).Methods("GET")
 
 	http.Handle("/", r)
 	log.Println("Server started at :8080")
